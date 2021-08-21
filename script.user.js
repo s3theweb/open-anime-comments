@@ -4,6 +4,8 @@
 // @version      0.1.0
 // @description  Allows access to diferent versions of comments on gogoanime
 // @author       The Web
+// @updateURL    https://raw.githubusercontent.com/s3theweb/open-anime-comments/main/script.user.js
+// @downloadURL  https://raw.githubusercontent.com/s3theweb/open-anime-comments/main/script.user.js
 // @include      http*://gogoanime.*/*
 // @include      http*://*.gogoanime.*/*
 // @icon         https://www.google.com/s2/favicons?domain=openanimecomments.disqus.com
