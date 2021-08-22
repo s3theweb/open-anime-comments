@@ -15,20 +15,21 @@
 
 (function() {
 	'use strict';
+	
+	// this function generates a url and title for disqus that is linked to the specifics of the anime
+	// for example for an anime's info page it would generate https://openanimecomments/anime/anime-name-here/about
+	// and for an episode 7 page it would generate https://openanimecomments/anime/anime-name-here/7
+	// or a place to post anything https://openanimecomments/shitpost
+	// the anime name should have spaces replaced with minus symbols and it should be lower case
+	// if you would like to implement this comment section for other sites feel free to do so
 	function findOpenAnimeUrl(){
-		// this function generates a url for disqus that is linked to the specifics of the anime
-		// for example for an anime's info page it would generate https://openanimecomments/anime/anime-name-here/about
-		// and for an episode 7 page it would generate https://openanimecomments/anime/anime-name-here/7
-		// or a place to post anything https://openanimecomments/shitpost
-		// the anime name should have spaces replaced with minus symbols and it should be lower case
-		// if you would like to implement this comment section for other sites feel free to do so
-		let host = "https://openanimecomments/"
+		let disqusHost = "https://openanimecomments/"
 		if(location.host.indexOf("gogoanime") > -1){
 			if(location.href.indexOf("category") > 0){
 				let animeName = location.href.split("/").reverse()[0]
 				if(animeName.length > 2){
 					return {
-						url:host + "anime/"+animeName+"/about",
+						url:disqusHost + "anime/"+animeName+"/about",
 						name:animeName.replace(/\-/g," "),
 					}
 				}else{
@@ -41,7 +42,7 @@
 				let episode = parseFloat(location.href.substring(episodeIndex+8).replace(/\-/g,"."))
 				if(animeName.length > 2 && isFinite(episode)){
 					return {
-						url:host + "anime/"+animeName+"/"+episode,
+						url:disqusHost + "anime/"+animeName+"/"+episode,
 						name:animeName.replace(/\-/g," ")+" episode "+episode,
 					}
 				}else{
@@ -51,11 +52,14 @@
 		}
 	}
 
+	//this function gets called after the disqus iframe is created
 	function load(disqusFrame){
+		
 		let baseUrl = new URL(disqusFrame.src)
 		let container = disqusFrame.parentElement
 		let startingSection = GM_getValue("animeCommentSectionDefault",undefined) || "default"
-
+		
+		// this function modifies the domains used in the disqus iframe
 		function setDomain(dusqusDomain,pageDomain,customUrl){
 			let newURL = new URL(baseUrl)
 			newURL.searchParams.set("f",dusqusDomain)
@@ -71,15 +75,21 @@
 			//countScript.src="https://gogoanimetv.disqus.com/count-data.js?2="+encodeURIComponent(pageUrl.toString())
 			//document.head.appendChild(countScript)
 		}
+		
+		// this function opens the normal comment section
 		function openDefault(){
 			let defaultDusqusDomain = baseUrl.searchParams.get("f")
 			let defaultPageDomain = (new URL(baseUrl.searchParams.get("t_u"))).host
 			setDomain(defaultDusqusDomain,defaultPageDomain)
 		}
+		
+		// open the old comment section that was supposedly wiped
 		function openOld(){
 			setDomain("gogoanimetv","gogoanime.io")
 		}
+		
 		var openAnimeUrl = findOpenAnimeUrl()
+		// this function opens the openanimecomments disqus comment section
 		function openCustom(){
 			let newURL = new URL(baseUrl)
 			newURL.search=""
@@ -91,6 +101,8 @@
 			newURL.searchParams.set("s_o","default")
 			disqusFrame.src=newURL.toString()
 		}
+		
+		// here is the place where the different
 		let sections = {
 			default:{
 				name:"Current",
@@ -112,6 +124,8 @@
 				open:openCustom
 			}
 		}
+		
+		// the rest of the code in this function creates the ui
 		let styles = document.createElement("style")
 		styles.innerHTML = `
 			.commentSectionButton{
@@ -169,7 +183,7 @@
 		})
 		tdDefault.appendChild(selectionDefault)
 		trDefault.appendChild(tdDefault)
-
+		
 		let trSection = document.createElement("tr")
 		for(let x in sections){
 			let section = sections[x]
