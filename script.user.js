@@ -16,11 +16,12 @@
 (function() {
 	'use strict';
 	function findOpenAnimeUrl(){
-		//this generates a url for disqus that is linked to the specifics of the anime
+		//thisfunction  generates a url for disqus that is linked to the specifics of the anime
 		//for example for an anime's info page it would generate https://openanimecomments/anime/anime-name-here/about
 		//and for an episode 7 page it would generate https://openanimecomments/anime/anime-name-here/7
 		//or a place to post anything https://openanimecomments/shitpost
 		//the anime name should have spaces replaced with minus symbols and it should be lower case
+		//if you would like to implement this comment section for other sites feel free to do so
 		let host = "https://openanimecomments/"
 		if(location.host.indexOf("gogoanime") > -1){
 			if(location.href.indexOf("category") > 0){
