@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         open anime comments
-// @namespace    http://tampermonkey.net/
+// @namespace    openanimecomments
 // @version      0.1.0
 // @description  Allows access to diferent versions of comments on gogoanime
 // @author       The Web
