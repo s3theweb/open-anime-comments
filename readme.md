@@ -5,5 +5,5 @@ One of the comment sections is not managed by gogoanime and uses openanimecommen
 ## Installation
 1. Install the Tampermonkey browser extension
 2. Click on `script.user.js` above to open it
-3. Click on the raw button that is on the left side above where the cod starts
+3. Click on the raw button that is on the left side above where the code starts
 4. Click on install when the Tampermonkey page shows up

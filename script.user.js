@@ -2,7 +2,7 @@
 // @name         open anime comments
 // @namespace    openanimecomments
 // @version      0.1.0
-// @description  Allows access to diferent versions of comments on gogoanime
+// @description  Allows access to different versions of comments on gogoanime
 // @author       The Web
 // @updateURL    https://raw.githubusercontent.com/s3theweb/open-anime-comments/main/script.user.js
 // @downloadURL  https://raw.githubusercontent.com/s3theweb/open-anime-comments/main/script.user.js
@@ -94,7 +94,7 @@
 		let sections = {
 			default:{
 				name:"Current",
-				description:"The comment section that shows up normaly",
+				description:"The comment section that shows up normally",
 				open:openDefault
 			},
 			orignal:{
@@ -108,7 +108,7 @@
 			console.log(openAnimeUrl)
 			sections.custom={
 				name:"Custom",
-				description:"A comment section that is less hevely moderated and supports images",
+				description:"A comment section that is less heavily moderated and supports images",
 				open:openCustom
 			}
 		}
