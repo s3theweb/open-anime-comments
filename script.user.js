@@ -16,7 +16,7 @@
 (function() {
 	'use strict';
 	function findOpenAnimeUrl(){
-		// this function  generates a url for disqus that is linked to the specifics of the anime
+		// this function generates a url for disqus that is linked to the specifics of the anime
 		// for example for an anime's info page it would generate https://openanimecomments/anime/anime-name-here/about
 		// and for an episode 7 page it would generate https://openanimecomments/anime/anime-name-here/7
 		// or a place to post anything https://openanimecomments/shitpost
